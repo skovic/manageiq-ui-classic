@@ -2131,7 +2131,7 @@ class ApplicationController < ActionController::Base
         session[:tab_bc][:sto] = @breadcrumbs.dup if ["show", "show_list", "index"].include?(action_name)
       when "ems_cloud", "availability_zone", "host_aggregate", "flavor"
         session[:tab_bc][:clo] = @breadcrumbs.dup if ["show", "show_list"].include?(action_name)
-      when "ems_infra", "datacenter", "ems_cluster", "resource_pool", "storage", "pxe_server"
+      when "ems_infra", "datacenter", "ems_cluster", "resource_pool", "storage", "pxe_server", "ems_physical_infra"
         session[:tab_bc][:inf] = @breadcrumbs.dup if ["show", "show_list"].include?(action_name)
       when "host"
         session[:tab_bc][:inf] = @breadcrumbs.dup if ["show", "show_list", "log_viewer"].include?(action_name)

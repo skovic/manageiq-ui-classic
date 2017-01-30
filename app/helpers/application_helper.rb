@@ -223,6 +223,9 @@ module ApplicationHelper
       if controller == "ems_infra" && action == "show"
         return ems_infras_path
       end
+      if controller == "ems_physical_infra" && action == "show"
+        return ems_physical_infras_path
+      end      
       if controller == "ems_container" && action == "show"
         return ems_containers_path
       end
@@ -714,7 +717,7 @@ module ApplicationHelper
   ]
   # Return a blank tb if a placeholder is needed for AJAX explorer screens, return nil if no custom toolbar to be shown
   def custom_toolbar_filename
-    if %w(ems_cloud ems_cluster ems_infra host miq_template storage ems_storage ems_network cloud_tenant).include?(@layout) # Classic CIs
+    if %w(ems_cloud ems_cluster ems_infra ems_physical_infra host miq_template storage ems_storage ems_network cloud_tenant).include?(@layout) # Classic CIs
       return "custom_buttons_tb" if @record && @lastaction == "show" && @display == "main"
     end
 
@@ -835,6 +838,7 @@ module ApplicationHelper
        ems_cluster
        ems_container
        ems_infra
+       ems_physical_infra
        ems_middleware
        ems_network
        ems_storage
@@ -1250,6 +1254,7 @@ module ApplicationHelper
                         ems_cluster
                         ems_container
                         ems_infra
+                        ems_physical_infra
                         ems_infra_dashboard
                         ems_middleware
                         ems_network
@@ -1352,6 +1357,7 @@ module ApplicationHelper
           ems_container
           ems_datawarehouse
           ems_infra
+          ems_physical_infra
           ems_middleware
           ems_network
           ems_storage
@@ -1418,6 +1424,7 @@ module ApplicationHelper
              ems_container
              ems_datawarehouse
              ems_infra
+             ems_physical_infra
              ems_middleware
              ems_network
              ems_storage
@@ -1481,6 +1488,7 @@ module ApplicationHelper
       ems_cluster
       ems_container
       ems_infra
+      ems_physical_infra
       ems_middleware
       ems_network
       ems_storage
@@ -1521,6 +1529,8 @@ module ApplicationHelper
 
   def db_for_quadicon
     case @layout
+    when "ems_physical_infra"
+      :ems
     when "ems_infra"
       :ems
     when "ems_cloud"

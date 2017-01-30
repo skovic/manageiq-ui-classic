@@ -73,7 +73,7 @@ module EmsPhysicalInfraHelper::TextualSummary
     available = @ems.number_of(:ems_folders) > 0 && @ems.ems_folder_root
     h         = {:label => label, :icon => "pficon pficon-virtual-machine", :value => available ? _("Available") : _("N/A")}
     if available
-      h[:link]  = ems_infra_path(@ems.id, :display => 'ems_folders')
+      h[:link]  = ems_physical_infra_path(@ems.id, :display => 'ems_folders')
       h[:title] = _("Show %{label}") % {:label => label}
     end
     h
@@ -85,7 +85,7 @@ module EmsPhysicalInfraHelper::TextualSummary
     available = @ems.number_of(:ems_folders) > 0 && @ems.ems_folder_root
     h         = {:label => label, :icon => "pficon pficon-virtual-machine", :value => available ? _("Available") : _("N/A")}
     if available
-      h[:link]  = ems_infra_path(@ems.id, :display => 'ems_folders', :vat => true)
+      h[:link]  = ems_physical_infra_path(@ems.id, :display => 'ems_folders', :vat => true)
       h[:title] = _("Show Virtual Machines & Templates")
     end
     h
@@ -96,7 +96,7 @@ module EmsPhysicalInfraHelper::TextualSummary
     num   = @ems.number_of(:ems_clusters)
     h     = {:label => label, :icon => "pficon pficon-cluster", :value => num}
     if num > 0 && role_allows?(:feature => "ems_cluster_show_list")
-      h[:link] = ems_infra_path(@ems.id, :display => 'ems_clusters', :vat => true)
+      h[:link] = ems_physical_infra_path(@ems.id, :display => 'ems_clusters', :vat => true)
       h[:title] = _("Show all %{label}") % {:label => label}
     end
     h
@@ -107,7 +107,7 @@ module EmsPhysicalInfraHelper::TextualSummary
     num   = @ems.number_of(:hosts)
     h     = {:label => label, :icon => "pficon pficon-screen", :value => num}
     if num > 0 && role_allows?(:feature => "host_show_list")
-      h[:link]  = ems_infra_path(@ems.id, :display => 'hosts')
+      h[:link]  = ems_physical_infra_path(@ems.id, :display => 'hosts')
       h[:title] = _("Show all %{label}") % {:label => label}
     end
     h
@@ -118,7 +118,7 @@ module EmsPhysicalInfraHelper::TextualSummary
 
     textual_link(@record.cloud_tenants,
                  :as   => CloudTenant,
-                 :link => ems_infra_path(@record.id, :display => 'cloud_tenants'))
+                 :link => ems_physical_infra_path(@record.id, :display => 'cloud_tenants'))
   end
 
   def textual_used_availability_zones
@@ -126,7 +126,7 @@ module EmsPhysicalInfraHelper::TextualSummary
 
     textual_link(@record.availability_zones,
                  :as   => AvailabilityZone,
-                 :link => ems_infra_path(@record.id, :display => 'availability_zones'))
+                 :link => ems_physical_infra_path(@record.id, :display => 'availability_zones'))
   end
 
   def textual_ems_cloud
@@ -140,7 +140,7 @@ module EmsPhysicalInfraHelper::TextualSummary
 
     textual_link(@record.storages.sort_by { |s| s.name.downcase },
                  :as   => Storage,
-                 :link => ems_infra_path(@record.id, :display => 'storages'))
+                 :link => ems_physical_infra_path(@record.id, :display => 'storages'))
   end
 
   def textual_vms
@@ -169,7 +169,8 @@ module EmsPhysicalInfraHelper::TextualSummary
   end
 
   def textual_zone
-    {:label => _("Managed by Zone"), :icon => "pficon pficon-zone", :value => @ems.zone.name}
+    #{:label => _("Managed by Zone"), :icon => "pficon pficon-zone", :value => @ems.zone.name}
+    return nil
   end
 
   def textual_host_default_vnc_port_range
