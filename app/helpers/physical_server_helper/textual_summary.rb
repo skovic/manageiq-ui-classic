@@ -2,7 +2,7 @@ module PhysicalServerHelper::TextualSummary
 
 
   def textual_group_properties
-    %i(name model productName manufacturer  machineType serialNumber  uuid)
+    %i(name model productName manufacturer machineType serialNumber uuid powerState)
   end
 
   def textual_group_relationships
@@ -47,6 +47,10 @@ module PhysicalServerHelper::TextualSummary
 
    def textual_model
       {:label =>  _("Model"), :value  =>  @record.model}
+   end
+
+   def textual_powerState
+      {:label =>  _("Power State"), :value  =>  @record.powerState}
    end
     
 end
