@@ -1,8 +1,6 @@
 module PhysicalServerHelper::TextualSummary
-
-
   def textual_group_properties
-    %i(name model productName manufacturer  machineType serialNumber  uuid)
+    %i(name model product_name manufacturer machine_type serial_number)
   end
 
   def textual_group_relationships
@@ -10,9 +8,11 @@ module PhysicalServerHelper::TextualSummary
   end
 
   def textual_group_compliance
-
   end
 
+  def textual_group_power_management
+    %i(power_state) 
+  end
 
   def textual_host
     {:label => _("Host"), :value => @record.host&.name, :icon =>  "pficon pficon-virtual-machine", :link => url_for(:controller =>'host', :action =>  'show', :id =>  @record.host&.id)}
@@ -22,31 +22,27 @@ module PhysicalServerHelper::TextualSummary
     {:label => _("Server name"), :value => @record.name }
   end
 
-   def textual_productName
-     {:label => _("Product Name"), :value => @record.productName }
+   def textual_product_name
+     {:label => _("Product Name"), :value => @record.product_name }
    end
   
    def textual_manufacturer
      {:label => _("Manufacturer"), :value => @record.manufacturer }
    end
   
-  
-   def textual_machineType
-     {:label =>_("Machine Type"), :value =>  @record.machineType }
+   def textual_machine_type
+     {:label =>_("Machine Type"), :value =>  @record.machine_type }
    end
   
-  
-   def textual_serialNumber
-     {:label => _("Serial Number"), :value => @record.serialNumber }
-   end
-  
-   def textual_uuid
-     {:label => _("UUID"), :value => @record.uuid }
-  
+   def textual_serial_number
+     {:label => _("Serial Number"), :value => @record.serial_number }
    end
 
    def textual_model
       {:label =>  _("Model"), :value  =>  @record.model}
    end
-    
+
+   def textual_power_state
+      {:label =>  _("Power State"), :value  =>  @record.power_state}
+   end
 end
