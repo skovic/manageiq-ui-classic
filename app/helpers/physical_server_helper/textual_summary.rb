@@ -1,6 +1,6 @@
 module PhysicalServerHelper::TextualSummary
   def textual_group_properties
-    %i(name model product_name manufacturer machine_type serial_number healthState)
+    %i(name model product_name manufacturer machine_type serial_number health_state)
   end
 
   def textual_group_relationships
@@ -38,7 +38,7 @@ module PhysicalServerHelper::TextualSummary
       {:label =>  _("Model"), :value  =>  @record.model}
    end
 
-   def textual_healthState
-     {:label =>  _("Health State"), :value  =>  @record.healthState}
+   def textual_health_state
+     {:label =>  _("Health State"), :value  =>  @record.health_state}
    end
 end
