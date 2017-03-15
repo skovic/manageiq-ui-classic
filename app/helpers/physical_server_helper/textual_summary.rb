@@ -1,6 +1,6 @@
 module PhysicalServerHelper::TextualSummary
   def textual_group_properties
-    %i(name model product_name manufacturer machine_type serial_number locLedState)
+    %i(name model product_name manufacturer machine_type serial_number loc_led_state)
   end
 
   def textual_group_relationships
@@ -38,7 +38,7 @@ module PhysicalServerHelper::TextualSummary
       {:label =>  _("Model"), :value  =>  @record.model}
    end
 
-   def textual_locLedState
-     {:label => _("Identify LED State"), :value => @record.locLedState}
+   def textual_loc_led_state
+     {:label => _("Identify LED State"), :value => @record.loc_led_state}
    end
 end
