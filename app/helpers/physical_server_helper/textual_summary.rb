@@ -10,10 +10,6 @@ module PhysicalServerHelper::TextualSummary
   def textual_group_compliance
   end
 
-  def textual_group_power_management
-    %i(power_state) 
-  end
-
   def textual_host
     {:label => _("Host"), :value => @record.host&.name, :icon =>  "pficon pficon-virtual-machine", :link => url_for(:controller =>'host', :action =>  'show', :id =>  @record.host&.id)}
   end
@@ -40,9 +36,5 @@ module PhysicalServerHelper::TextualSummary
 
    def textual_model
       {:label =>  _("Model"), :value  =>  @record.model}
-   end
-
-   def textual_power_state
-      {:label =>  _("Power State"), :value  =>  @record.power_state}
    end
 end
