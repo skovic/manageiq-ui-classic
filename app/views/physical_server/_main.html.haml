@@ -3,5 +3,6 @@
   .col-md-12.col-lg-6
     = render :partial => "shared/summary/textual", :locals => {:title => _("Properties"), :items => textual_group_properties}
     = render :partial => "shared/summary/textual", :locals => {:title => _("Relationships"), :items => textual_group_relationships}
+    = render :partial => "textual_firmware_table", :locals => {:title => _("Firmware"), :items => textual_group_firmware_details}
   .col-md-12.col-lg-6
     TODO: other groups
