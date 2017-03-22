@@ -44,7 +44,7 @@ module PhysicalServerHelper::TextualSummary
 
    def textual_firmware_details
      fw_details = []
-     @record.firmware.each do |fw|
+     @record.hardware.firmware.each do |fw|
        fw_details.push({:label => fw.name, :value => fw.version})
      end
 
