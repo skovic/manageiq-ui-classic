@@ -33,7 +33,6 @@
         .col-md-10
           %p.form-control-static
             = h(@host.ipaddress)
-
 - when "hv_info"
   - if @vmminfo
     .form-horizontal.static
@@ -46,7 +45,6 @@
               = h(item[:description])
 - when "network"
   = render :partial => "network_tree"
-
 - when "storage_adapters"
   %table{:style => "height: 100px;"}
     %tr

@@ -5,5 +5,3 @@
 - else
   %div{:id => "#{session[:tree_name]}box", :style => "width: 100%"}
     = render(:partial => 'shared/tree', :locals => {:tree => @network_tree, :name => @network_tree.name.to_s})
-
-

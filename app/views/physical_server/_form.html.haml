@@ -88,7 +88,6 @@
     = render(:partial => "/layouts/angular/multi_auth_credentials",
              :locals  => {:record => @host, :ng_model => "hostModel"})
     = render :partial => "layouts/angular/x_edit_buttons_angular"
-
   - unless session[:host_items].nil?
     %h3
       = n_("Host", "Hosts", session[:host_items].length)
@@ -102,7 +101,6 @@
               - @embedded = true
               - @gtl_type = settings(:views, :host)
               = render :partial => 'layouts/gtl'
-
 :javascript
   ManageIQ.angular.app.value('hostFormId', '#{(@host.id || (session[:host_items] && session[:host_items].join(","))) || "new"}');
   miq_bootstrap('#form_div');
