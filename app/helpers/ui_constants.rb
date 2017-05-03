@@ -162,7 +162,7 @@ module UiConstants
       :miq_template    => true,
       :physical_server => true,
       :storage         => true,
-      :vm              => true,
+      :vm              => true
     },
     :views     => { # List view setting, by resource type
       :authkeypaircloud                         => "list",

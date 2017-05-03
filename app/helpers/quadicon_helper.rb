@@ -260,7 +260,7 @@ module QuadiconHelper
         end
       end
     end
-    safe_join(output.collect(&:html_safe))
+    safe_join(output)
   end
 
   # FIXME: Even better would be to ask the object what name to use
@@ -287,7 +287,7 @@ module QuadiconHelper
     if quadicon_in_explorer_view?
       quadicon_build_explorer_url(item, row)
     else
-      url_for_record(item)
+      url_for_db(controller_name, "show", item)
     end
   end
 
@@ -399,6 +399,7 @@ module QuadiconHelper
   def quadicon_named_for_base_model?(item)
     %w(VmOrTempalte PhysicalServer).include?(item.class.base_model.name)
   end
+
   def quadicon_builder_name_from(item)
     builder_name = if CLASSLY_NAMED_ITEMS.include?(item.class.name)
                      item.class.name.underscore
@@ -412,6 +413,7 @@ module QuadiconHelper
                      # All other models that only need single large icon and use name for hover text
                      "single_quad"
                    end
+
     builder_name = 'vm_or_template' if %w(miq_template vm).include?(builder_name)
     builder_name
   end
@@ -555,6 +557,7 @@ module QuadiconHelper
   #
   def render_ext_management_system_quadicon(item, options)
     output = []
+
     if settings(:quadicons, db_for_quadicon)
       output << flobj_img_simple("layout/base.png")
       item_count = case item
@@ -621,13 +624,7 @@ module QuadiconHelper
     output << flobj_img_simple(img_path, "e72")
 
     unless options[:typ] == :listnav
-      name = if item.kind_of?(MiqCimInstance)
-               item.evm_display_name
-             elsif item.kind_of?(MiqProvisionRequest)
-               item.message
-             else
-               item.try(:name)
-             end
+      name = item.name
 
       img_opts = {
         :title => h(name),
@@ -704,7 +701,7 @@ module QuadiconHelper
 
   def img_for_health_state(item)
     case item.health_state
-    when "Valid"    then "100/healthstate-normal.png"
+    when "Valid"    then "svg/healthstate-normal.svg"
     when "Critical" then "svg/healthstate-critical.svg"
     when "None"     then "svg/healthstate-unknown.svg"
     when "Warning"  then "100/warning.png"
